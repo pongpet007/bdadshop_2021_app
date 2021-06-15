@@ -17,6 +17,7 @@ import {
 import { Icon } from "react-native-elements";
 
 import AppLoading from "expo-app-loading";
+import * as Font from "expo-font";
 import { useFonts } from "@expo-google-fonts/inter";
 
 import {
@@ -24,13 +25,15 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import {
   configureFonts,
   DefaultTheme,
   Provider as PaperProvider,
 } from "react-native-paper";
-
-import * as Font from "expo-font";
 
 import Slider from "../components/Slider";
 
@@ -90,7 +93,7 @@ export default class HomeScreen extends React.Component {
 
   async _loadingFont() {
     await Font.loadAsync({
-      Kanit: require("../assets/fonts/Kanit-Light.ttf"),
+      Kanit: require("../assets/fonts/Kanit-Regular.ttf"),
       KanitBold: require("../assets/fonts/Kanit-Medium.ttf"),
     });
 
@@ -104,31 +107,34 @@ export default class HomeScreen extends React.Component {
     }
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "#FFF", paddingBottom: 100 }}>
         <View
           style={{
-            flex: 0.1,
             backgroundColor: "#FFF",
             alignItems: "center",
-            top: height * 0.2,
-            marginBottom: height * 0.18,
+            top: 40,
+            paddingBottom: 60,
           }}
         >
-          <Image style={styles.logo} source={logo} />
+          <Image
+            style={styles.logo}
+            source={require("../assets/images/logo.png")}
+          />
+
           <TouchableOpacity
-            style={{ position: "absolute", top: 15, right: width * 0.05 }}
-            onPress={() => this.props.navigation.navigate("Profile")}
+            style={{ position: "absolute", top: 10, right: 20 }}
+            onPress={() => navigation.navigate("User")}
           >
             <Image
               style={{
-                width: 30,
-                height: 30,
+                width: 25,
+                height: 25,
               }}
               source={user}
             />
           </TouchableOpacity>
         </View>
-        <View style={{ flex: 0.8, backgroundColor: "#FFF" }}>
+        <View style={{ backgroundColor: "#FFF" }}>
           <ScrollView>
             <View style={styles.container}>
               <View style={styles.SectionSearch}>
@@ -147,7 +153,7 @@ export default class HomeScreen extends React.Component {
               <View style={styles.spaceMenu}>
                 <TouchableOpacity
                   style={styles.spaceMenu2}
-                  onPress={() => this.props.navigation.navigate("Profile")}
+                  onPress={() => this.props.navigation.navigate("Category")}
                 >
                   <View style={styles.menuAlign}>
                     <Image
@@ -174,7 +180,7 @@ export default class HomeScreen extends React.Component {
                 >
                   <View style={styles.menuAlign}>
                     <Image style={styles.menu_category} source={catalogue} />
-                    <Text style={styles.menuText}>category</Text>
+                    <Text style={styles.menuText}>Catelogue</Text>
                   </View>
                 </TouchableOpacity>
 
@@ -236,65 +242,6 @@ export default class HomeScreen extends React.Component {
             </View>
           </ScrollView>
         </View>
-        <View
-          style={{
-            flex: 0.1,
-            backgroundColor: "#FFF",
-            alignItems: "center",
-          }}
-        >
-          <View style={styles.spaceMenu}>
-            <TouchableOpacity
-              style={styles.menu_footer}
-              onPress={() => this.props.navigation.navigate("Profile")}
-            >
-              <View style={styles.menuAlign}>
-                <Image style={styles.menu_footer_img} source={user_footer} />
-                <Text style={styles.footerText}>บัญชี</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.menu_footer}
-              onPress={() => this.props.navigation.navigate("Profile")}
-            >
-              <View style={styles.menuAlign}>
-                <Image style={styles.menu_footer_img} source={file_footer} />
-                <Text style={styles.footerText}>ใบเสนอราคา</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menu_footer}
-              onPress={() => this.props.navigation.navigate("Profile")}
-            >
-              <View style={styles.menuAlign}>
-                <Image
-                  style={styles.menu_footer_img}
-                  source={category_footer}
-                />
-                <Text style={styles.footerText}>หมวดหมู่</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menu_footer}
-              onPress={() => this.props.navigation.navigate("Profile")}
-            >
-              <View style={styles.menuAlign}>
-                <Image style={styles.menu_footer_img} source={brand_footer} />
-                <Text style={styles.footerText}>แบรนด์</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menu_footer}
-              onPress={() => this.props.navigation.navigate("Profile")}
-            >
-              <View style={styles.menuAlign}>
-                <Image style={styles.menu_footer_img} source={mark_footer} />
-                <Text style={styles.footerText}>โรงงานใกล้คุณ</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
       </View>
     );
   }
@@ -304,14 +251,13 @@ const styles = StyleSheet.create({
   container: {
     top: 10,
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     marginBottom: 30,
     // justifyContent: "center",
   },
   logo: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     // position: "absolute",
     // top: 0,
   },
@@ -353,28 +299,28 @@ const styles = StyleSheet.create({
   menu_category: {
     width: wp("9%"),
     height: wp("9%"),
-    margin: "auto",
+    // margin: "auto",
   },
   menu_footer_img: {
-    width: wp("8%"),
-    height: wp("8%"),
+    width: 25,
+    height: 25,
     margin: "auto",
     alignItems: "center",
   },
   menuText: {
     fontFamily: "Kanit",
-    fontSize: wp("3%"),
+    fontSize: 11,
   },
   footerText: {
     fontFamily: "Kanit",
-    fontSize: wp("2.5%"),
+    fontSize: 10,
   },
   spaceMenu2: {
     margin: 10,
   },
   menu_footer: {
-    paddingLeft: wp("3.8%"),
-    paddingRight: wp("3.8%"),
+    paddingLeft: "3%",
+    paddingRight: "3%",
   },
   spaceItem: {
     flexDirection: "row",
@@ -390,7 +336,7 @@ const styles = StyleSheet.create({
   textAdvice: {
     paddingLeft: 20,
     fontFamily: "Kanit",
-    fontSize: width * 0.04,
+    fontSize: 15,
     color: "#FFF",
   },
   Item1: {

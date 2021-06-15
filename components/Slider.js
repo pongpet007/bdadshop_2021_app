@@ -61,22 +61,4 @@ const styles = StyleSheet.create({
     marginLeft: width * 0.025,
     marginRight: width * 0.25,
   },
-  pagination: {
-    flexDirection: "row",
-    position: "absolute",
-    bottom: -30,
-    alignSelf: "center",
-  },
-  paginationText: {
-    fontSize: width / 30,
-    color: "#888888",
-
-    margin: 3,
-  },
-  paginationActiveText: {
-    fontSize: width / 30,
-    color: "#333",
-
-    margin: 3,
-  },
 });

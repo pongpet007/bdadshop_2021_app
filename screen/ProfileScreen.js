@@ -29,8 +29,8 @@ import mark_footer from "../assets/images/footer/pin.png";
 import user_active from "../assets/images/footer/user_active.png";
 
 const { width } = Dimensions.get("window");
-const width_s = width * 0.1;
-const height = width * 0.1;
+const width_s = width * 0.13;
+const height = width * 0.13;
 
 export default class ProfileScreen extends React.Component {
   constructor(props) {
@@ -62,55 +62,54 @@ export default class ProfileScreen extends React.Component {
       return <AppLoading />;
     }
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1, backgroundColor: "#EEE", paddingBottom: 100 }}>
         <View
           style={{
-            width: "100%",
             backgroundColor: "#3370b3",
             alignItems: "center",
-            flex: 0.03,
-            top: height * 0.03,
-            padding: 10,
+            marginTop: 50,
+            paddingBottom: 10,
+            paddingTop: 10,
           }}
         >
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("Home")}
-            style={{ position: "absolute", left: 0 }}
+            style={{
+              position: "absolute",
+              left: 10,
+              paddingTop: 10,
+              justifyContent: "center",
+            }}
           >
-            <Image
-              style={{ width: 25, height: 25, top: height * 0.1, left: 10 }}
-              source={back}
-            />
+            <Image style={{ width: 25, height: 25, left: 10 }} source={back} />
           </TouchableOpacity>
           <Text
             style={{
               fontFamily: "Kanit",
               color: "#FFF",
-              fontSize: width * 0.04,
+              fontSize: 15,
             }}
           >
             บัญชีของฉัน
           </Text>
         </View>
-        <View style={{ flex: 0.85 }}>
+        <View style={{}}>
           <ScrollView>
-            <View style={{ alignItems: "center" }}>
+            <View style={{ alignItems: "center", marginTop: 10 }}>
               <Image
                 source={profile}
                 style={{
                   width: width_s,
                   height: height,
-                  borderRadius: "50%",
-                  marginTop: 10,
+                  borderRadius: 50,
                 }}
               ></Image>
               <Text
                 style={{
                   fontFamily: "Kanit",
-                  fontSize: width * 0.04,
+                  fontSize: 15,
                   paddingTop: 5,
                   paddingBottom: 5,
-                  fontWeight: 600,
                 }}
               >
                 ชื่อ นายมานี มีใจ
@@ -131,7 +130,7 @@ export default class ProfileScreen extends React.Component {
               </View>
               <View style={styles.width50}>
                 <TouchableOpacity style={{ position: "absolute", right: 20 }}>
-                  <Text style={{ fontFamily: "Kanit", fontWeight: 500 }}>
+                  <Text style={{ fontFamily: "Kanit" }}>
                     <Icon
                       name="pencil-outline"
                       type="ionicon"
@@ -280,74 +279,7 @@ export default class ProfileScreen extends React.Component {
                 </TouchableOpacity>
               </View>
             </View>
-
-            {/* <Text>ชื่อ อาจารย์มี มหาการ</Text>
-          <Button
-            title="Home"
-            onPress={() => this.props.navigation.navigate("Home")}
-          /> */}
           </ScrollView>
-        </View>
-
-        <View
-          style={{
-            flex: 0.14,
-            backgroundColor: "#FFF",
-            width: "100%",
-            alignItems: "center",
-          }}
-        >
-          <View style={styles.spaceMenu}>
-            <TouchableOpacity
-              style={styles.menu_footer}
-              onPress={() => this.props.navigation.navigate("Profile")}
-            >
-              <View style={styles.menuAlign}>
-                <Image style={styles.menu_footer_img} source={user_active} />
-                <Text style={styles.footerText}>บัญชี</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.menu_footer}
-              onPress={() => this.props.navigation.navigate("Profile")}
-            >
-              <View style={styles.menuAlign}>
-                <Image style={styles.menu_footer_img} source={file_footer} />
-                <Text style={styles.footerText}>ใบเสนอราคา</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menu_footer}
-              onPress={() => this.props.navigation.navigate("Profile")}
-            >
-              <View style={styles.menuAlign}>
-                <Image
-                  style={styles.menu_footer_img}
-                  source={category_footer}
-                />
-                <Text style={styles.footerText}>หมวดหมู่</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menu_footer}
-              onPress={() => this.props.navigation.navigate("Profile")}
-            >
-              <View style={styles.menuAlign}>
-                <Image style={styles.menu_footer_img} source={brand_footer} />
-                <Text style={styles.footerText}>แบรนด์</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menu_footer}
-              onPress={() => this.props.navigation.navigate("Profile")}
-            >
-              <View style={styles.menuAlign}>
-                <Image style={styles.menu_footer_img} source={mark_footer} />
-                <Text style={styles.footerText}>โรงงานใกล้คุณ</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
         </View>
       </View>
     );
@@ -356,12 +288,11 @@ export default class ProfileScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    top: 10,
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     marginBottom: 30,
-    // justifyContent: "center",
-    top: 50,
   },
   spaceMenu: {
     flexDirection: "row",
@@ -372,8 +303,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   menu_footer_img: {
-    width: wp("8%"),
-    height: wp("8%"),
+    width: 25,
+    height: 25,
     margin: "auto",
     alignItems: "center",
   },
@@ -387,12 +318,8 @@ const styles = StyleSheet.create({
     color: "#fcae16",
   },
   menu_footer: {
-    paddingLeft: wp("3.8%"),
-    paddingRight: wp("3.8%"),
-  },
-  footerText: {
-    fontFamily: "Kanit",
-    fontSize: wp("2.5%"),
+    paddingLeft: "3%",
+    paddingRight: "3%",
   },
   flexR50: {
     marginTop: 10,
@@ -406,7 +333,6 @@ const styles = StyleSheet.create({
   },
   Left20: {
     left: 20,
-    // position: "absolute",
     fontFamily: "Kanit",
     color: "#396faf",
   },
