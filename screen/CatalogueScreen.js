@@ -11,9 +11,32 @@ import {
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 
-import ModalHeader from "../components/ContentBrand";
+import ContentCatalogue from "../components/ContentCatalogue";
+import TestProps from "../components/TestProps";
 
-export default class BrandScreen extends React.Component {
+import useAxios from "axios-hooks";
+
+import axios from "axios";
+const getDataUsingSimpleGetCall = () => {
+  axios
+    .get("http://bdadshop.com/api/Home/indexnew")
+    .then(function (response) {
+      // handle success
+      alert(JSON.stringify(response.data.bannervip));
+      // setDatabanner(response.data.bannervip);
+      // alert(JSON.stringify(databaner));
+    })
+    .catch(function (error) {
+      // handle error
+      alert(error.message);
+    })
+    .finally(function () {
+      // always executed
+      alert("Finally called");
+    });
+};
+
+export default class CatalogueScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -75,8 +98,9 @@ export default class BrandScreen extends React.Component {
               fontSize: 14,
             }}
           >
-            แบรนด์ทั้งหมด
+            Catalogue
           </Text>
+
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("Home")}
             style={{
@@ -97,7 +121,11 @@ export default class BrandScreen extends React.Component {
             />
           </TouchableOpacity>
         </View>
-        <ModalHeader />
+        <ContentCatalogue />
+        {/* <TestProps /> */}
+        <TouchableOpacity opress={getDataUsingSimpleGetCall}>
+          <Text style={{ textAlign: "center", fontSize: 18 }}>Load API</Text>
+        </TouchableOpacity>
       </View>
     );
   }

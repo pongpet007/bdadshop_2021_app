@@ -52,11 +52,11 @@ const styles = StyleSheet.create({
   container: {
     width,
     height,
-    resizeMode: "cover",
+    
   },
 
   image: {
-    width: width * 0.95,
+    width: 500,
     height: height * 0.95,
     marginLeft: width * 0.025,
     marginRight: width * 0.25,

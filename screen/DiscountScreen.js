@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 
-import ModalHeader from "../components/ContentBrand";
+import ContentDiscount from "../components/ContentDiscount";
+import TestProps from "../components/TestProps";
 
-export default class BrandScreen extends React.Component {
+export default class DiscountScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -75,8 +69,9 @@ export default class BrandScreen extends React.Component {
               fontSize: 14,
             }}
           >
-            แบรนด์ทั้งหมด
+            Discount
           </Text>
+
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("Home")}
             style={{
@@ -97,7 +92,8 @@ export default class BrandScreen extends React.Component {
             />
           </TouchableOpacity>
         </View>
-        <ModalHeader />
+        {/* <ContentDiscount /> */}
+        <TestProps />
       </View>
     );
   }

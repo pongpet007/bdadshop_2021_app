@@ -8,12 +8,8 @@ import {
   TouchableOpacity,
   Dimensions,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
-
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
 
 import { Icon } from "react-native-elements";
 
@@ -22,11 +18,6 @@ import AppLoading from "expo-app-loading";
 
 import back from "../assets/images/left-arrow.png";
 import profile from "../assets/images/user.png";
-import file_footer from "../assets/images/footer/file.png";
-import category_footer from "../assets/images/footer/menu-category.png";
-import brand_footer from "../assets/images/footer/bookmark.png";
-import mark_footer from "../assets/images/footer/pin.png";
-import user_active from "../assets/images/footer/user_active.png";
 
 const { width } = Dimensions.get("window");
 const width_s = width * 0.13;
@@ -62,7 +53,13 @@ export default class ProfileScreen extends React.Component {
       return <AppLoading />;
     }
     return (
-      <View style={{ flex: 1, backgroundColor: "#EEE", paddingBottom: 100 }}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "#FFF",
+          paddingBottom: 100,
+        }}
+      >
         <View
           style={{
             backgroundColor: "#3370b3",
@@ -70,6 +67,7 @@ export default class ProfileScreen extends React.Component {
             marginTop: 50,
             paddingBottom: 10,
             paddingTop: 10,
+            ...styles.fontDS,
           }}
         >
           <TouchableOpacity
@@ -85,15 +83,16 @@ export default class ProfileScreen extends React.Component {
           </TouchableOpacity>
           <Text
             style={{
-              fontFamily: "Kanit",
+              // fontFamily: "Kanit",
               color: "#FFF",
               fontSize: 15,
+              ...styles.fontDS,
             }}
           >
             บัญชีของฉัน
           </Text>
         </View>
-        <View style={{}}>
+        <View style={{ backgroundColor: "#FFF" }}>
           <ScrollView>
             <View style={{ alignItems: "center", marginTop: 10 }}>
               <Image
@@ -103,7 +102,8 @@ export default class ProfileScreen extends React.Component {
                   height: height,
                   borderRadius: 50,
                 }}
-              ></Image>
+                PlaceholderContent={<ActivityIndicator />}
+              />
               <Text
                 style={{
                   fontFamily: "Kanit",
@@ -115,167 +115,429 @@ export default class ProfileScreen extends React.Component {
                 ชื่อ นายมานี มีใจ
               </Text>
             </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                paddingLeft: 20,
+                paddingRight: 20,
+                paddingBottom: 10,
+                paddingTop: 10,
+              }}
+            >
+              <View style={{ flex: 1, width: "50%" }}>
                 <Text
                   style={{
-                    fontFamily: "KanitBold",
-                    // position: "absolute",
-                    left: 20,
-                    color: "#396faf",
+                    textAlign: "left",
+                    fontFamily: "Kanit",
+                    fontSize: 15,
+                    color: "#3975b1",
                   }}
                 >
                   ข้อมูลส่วนบุคคล
                 </Text>
               </View>
-              <View style={styles.width50}>
-                <TouchableOpacity style={{ position: "absolute", right: 20 }}>
-                  <Text style={{ fontFamily: "Kanit" }}>
-                    <Icon
-                      name="pencil-outline"
-                      type="ionicon"
-                      color="#333"
-                      size="13"
-                    />
+              <View style={{ flex: 1, width: "50%" }}>
+                <TouchableOpacity
+                  style={{
+                    right: 0,
+                    position: "absolute",
+                    textAlign: "right",
+                    flexDirection: "row",
+                    top: 0,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Icon
+                    reverse
+                    name="pencil-outline"
+                    type="ionicon"
+                    color="#000"
+                    size={5}
+                  />
+                  <Text
+                    style={{ ...styles.fontDS, fontSize: 16, color: "#000" }}
+                  >
                     แก้ไขข้อมูล
                   </Text>
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
-                <Text style={styles.Left20}>ชื่อ - นามสกุล</Text>
-              </View>
-              <View style={styles.width50}>
+
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                paddingLeft: 20,
+                paddingRight: 20,
+                paddingBottom: 10,
+                paddingTop: 10,
+                borderBottomColor: "#CCC",
+                borderBottomWidth: 1,
+              }}
+            >
+              <View style={{ flex: 1, width: "50%" }}>
                 <Text
                   style={{
-                    position: "absolute",
-                    right: 20,
+                    textAlign: "left",
                     fontFamily: "Kanit",
-                    color: "#CCCCCC",
+                    fontSize: 15,
+                    color: "#3975b1",
                   }}
                 >
-                  มานี มีใจ
+                  ชือ - นามสกุล
+                </Text>
+              </View>
+              <View style={{ flex: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlign: "right",
+                    right: 0,
+                    top: 5,
+                    position: "absolute",
+                    ...styles.fontDS,
+                    color: "#808080",
+                  }}
+                >
+                  มานี มีใจรักการเรียน
                 </Text>
               </View>
             </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
-                <Text style={styles.Left20}>เปลี่ยนรหัสผ่าน</Text>
+
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                paddingLeft: 20,
+                paddingRight: 20,
+                paddingBottom: 10,
+                paddingTop: 10,
+                borderBottomColor: "#CCC",
+                borderBottomWidth: 1,
+              }}
+            >
+              <View style={{ flex: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlign: "left",
+                    fontFamily: "Kanit",
+                    fontSize: 15,
+                    color: "#3975b1",
+                  }}
+                >
+                  เปลี่ยนรหัสผ่าน
+                </Text>
               </View>
-              <View style={styles.width50}>
-                <TouchableOpacity style={styles.Right20}>
+              <View style={{ flex: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlign: "right",
+                    right: 0,
+                    top: 5,
+                    position: "absolute",
+                    ...styles.fontDS,
+                    color: "#808080",
+                  }}
+                >
                   <Icon
+                    reverse
                     name="chevron-forward-outline"
                     type="ionicon"
-                    color="#333"
-                    size="13"
+                    color="#7e7e7e"
+                    size={8}
                   />
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
-                <Text style={styles.Left20}>เบอร์โทรศัพท์</Text>
-              </View>
-              <View style={styles.width50}>
-                <Text
-                  style={{ position: "absolute", right: 20, color: "#CCCCCC" }}
-                >
-                  0615559999
                 </Text>
               </View>
             </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
-                <Text style={styles.Left20}>อีเมล</Text>
-              </View>
-              <View style={styles.width50}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                paddingLeft: 20,
+                paddingRight: 20,
+                paddingBottom: 10,
+                paddingTop: 10,
+                borderBottomColor: "#CCC",
+                borderBottomWidth: 1,
+              }}
+            >
+              <View style={{ flex: 1, width: "50%" }}>
                 <Text
-                  style={{ position: "absolute", right: 20, color: "#CCCCCC" }}
+                  style={{
+                    textAlign: "left",
+                    fontFamily: "Kanit",
+                    fontSize: 15,
+                    color: "#3975b1",
+                  }}
+                >
+                  เบอร์โทรศัพท์
+                </Text>
+              </View>
+              <View style={{ flex: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlign: "right",
+                    right: 0,
+                    top: 5,
+                    position: "absolute",
+                    ...styles.fontDS,
+                    color: "#808080",
+                  }}
+                >
+                  0650557896
+                </Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                paddingLeft: 20,
+                paddingRight: 20,
+                paddingBottom: 10,
+                paddingTop: 10,
+                borderBottomColor: "#CCC",
+                borderBottomWidth: 1,
+              }}
+            >
+              <View style={{ flex: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlign: "left",
+                    fontFamily: "Kanit",
+                    fontSize: 15,
+                    color: "#3975b1",
+                  }}
+                >
+                  อีเมล
+                </Text>
+              </View>
+              <View style={{ flex: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlign: "right",
+                    right: 0,
+                    top: 5,
+                    position: "absolute",
+                    ...styles.fontDS,
+                    color: "#808080",
+                  }}
                 >
                   example@gmail.com
                 </Text>
               </View>
             </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
-                <Text style={styles.Left20}>ไอดีไลน์</Text>
-              </View>
-              <View style={styles.width50}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                paddingLeft: 20,
+                paddingRight: 20,
+                paddingBottom: 10,
+                paddingTop: 10,
+                borderBottomColor: "#CCC",
+                borderBottomWidth: 1,
+              }}
+            >
+              <View style={{ flex: 1, width: "50%" }}>
                 <Text
-                  style={{ position: "absolute", right: 20, color: "#CCCCCC" }}
+                  style={{
+                    textAlign: "left",
+                    fontFamily: "Kanit",
+                    fontSize: 15,
+                    color: "#3975b1",
+                  }}
                 >
-                  examlineid01
+                  ไอดีไลน์
+                </Text>
+              </View>
+              <View style={{ flex: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlign: "right",
+                    right: 0,
+                    top: 5,
+                    position: "absolute",
+                    ...styles.fontDS,
+                    color: "#808080",
+                  }}
+                >
+                  exam_555
                 </Text>
               </View>
             </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
-                <Text style={styles.Left20}>เฟสบุ๊ค</Text>
-              </View>
-              <View style={styles.width50}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                paddingLeft: 20,
+                paddingRight: 20,
+                paddingBottom: 10,
+                paddingTop: 10,
+                borderBottomColor: "#CCC",
+                borderBottomWidth: 1,
+              }}
+            >
+              <View style={{ flex: 1, width: "50%" }}>
                 <Text
-                  style={{ position: "absolute", right: 20, color: "#CCCCCC" }}
+                  style={{
+                    textAlign: "left",
+                    fontFamily: "Kanit",
+                    fontSize: 15,
+                    color: "#3975b1",
+                  }}
                 >
-                  Logan Lee
+                  เฟสบุ๊ค
+                </Text>
+              </View>
+              <View style={{ flex: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlign: "right",
+                    right: 0,
+                    top: 5,
+                    position: "absolute",
+                    ...styles.fontDS,
+                    color: "#808080",
+                  }}
+                >
+                  Xample Sky
                 </Text>
               </View>
             </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
-                <Text style={styles.Left20}>ตั้งค่าการแจ้งเตือน</Text>
-              </View>
-              <View style={styles.width50}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                paddingLeft: 20,
+                paddingRight: 20,
+                paddingBottom: 10,
+                paddingTop: 10,
+                borderBottomColor: "#CCC",
+                borderBottomWidth: 1,
+              }}
+            >
+              <View style={{ flex: 1, width: "50%" }}>
                 <Text
-                  style={{ position: "absolute", right: 20, color: "#CCCCCC" }}
+                  style={{
+                    textAlign: "left",
+                    fontFamily: "Kanit",
+                    fontSize: 15,
+                    color: "#3975b1",
+                  }}
                 >
-                  wait API
+                  ตั้งค่าการแจ้งเตือน
+                </Text>
+              </View>
+              <View style={{ flex: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlign: "right",
+                    right: 0,
+                    top: 5,
+                    position: "absolute",
+                    ...styles.fontDS,
+                    color: "#808080",
+                  }}
+                >
+                  **
                 </Text>
               </View>
             </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
-                <Text style={styles.Left20}>เปลี่ยนภาษา</Text>
-              </View>
-              <View style={styles.width50}>
-                <TouchableOpacity style={styles.Right20}>
-                  <Icon
-                    name="chevron-forward-outline"
-                    type="ionicon"
-                    color="#333"
-                    size="13"
-                  />
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                paddingLeft: 20,
+                paddingRight: 20,
+                paddingBottom: 10,
+                paddingTop: 10,
+                borderBottomColor: "#CCC",
+                borderBottomWidth: 1,
+              }}
+            >
+              <View style={{ flex: 1, width: "50%" }}>
+                <TouchableOpacity>
+                  <Text
+                    style={{
+                      textAlign: "left",
+                      fontFamily: "Kanit",
+                      fontSize: 15,
+                      color: "#3975b1",
+                    }}
+                  >
+                    เปลี่ยนภาษา
+                  </Text>
                 </TouchableOpacity>
               </View>
-            </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
-                <Text style={styles.Left20}>เปลี่ยนภาษา</Text>
-              </View>
-              <View style={styles.width50}>
-                <TouchableOpacity style={styles.Right20}>
+              <View style={{ flex: 1, width: "50%" }}>
+                <Text
+                  style={{
+                    textAlign: "right",
+                    right: 0,
+                    top: 5,
+                    position: "absolute",
+                    ...styles.fontDS,
+                    color: "#808080",
+                  }}
+                >
                   <Icon
+                    reverse
                     name="chevron-forward-outline"
                     type="ionicon"
-                    color="#333"
-                    size="13"
+                    color="#7e7e7e"
+                    size={8}
                   />
+                </Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                paddingLeft: 20,
+                paddingRight: 20,
+                paddingBottom: 10,
+                paddingTop: 10,
+                borderBottomColor: "#CCC",
+                borderBottomWidth: 1,
+              }}
+            >
+              <View style={{ flex: 1, width: "50%" }}>
+                <TouchableOpacity>
+                  <Text
+                    style={{
+                      textAlign: "left",
+                      fontFamily: "Kanit",
+                      fontSize: 15,
+                      color: "#3975b1",
+                    }}
+                  >
+                    ออกจากระบบ
+                  </Text>
                 </TouchableOpacity>
               </View>
-            </View>
-            <View style={styles.flexR50}>
-              <View style={styles.width50}>
-                <Text style={styles.Left20}>ออกจากระบบ</Text>
-              </View>
-              <View style={styles.width50}>
-                <TouchableOpacity style={styles.Right20}>
-                  <Icon
-                    name="chevron-forward-outline"
-                    type="ionicon"
-                    color="#333"
-                    size="13"
-                  />
+              <View style={{ flex: 1, width: "50%" }}>
+                <TouchableOpacity>
+                  <Text
+                    style={{
+                      textAlign: "right",
+                      right: 0,
+                      top: 5,
+                      position: "absolute",
+                      ...styles.fontDS,
+                      color: "#808080",
+                    }}
+                  >
+                    <Icon
+                      reverse
+                      name="chevron-forward-outline"
+                      type="ionicon"
+                      color="#7e7e7e"
+                      size={8}
+                    />
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -294,51 +556,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 30,
   },
-  spaceMenu: {
-    flexDirection: "row",
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  menuAlign: {
-    alignItems: "center",
-  },
-  menu_footer_img: {
-    width: 25,
-    height: 25,
-    margin: "auto",
-    alignItems: "center",
-  },
-  footerText: {
-    fontFamily: "Kanit",
-    fontSize: 10,
-  },
-  footerText_active: {
-    fontFamily: "Kanit",
-    fontSize: 10,
-    color: "#fcae16",
-  },
-  menu_footer: {
-    paddingLeft: "3%",
-    paddingRight: "3%",
-  },
-  flexR50: {
-    marginTop: 10,
-    paddingBottom: 10,
-    flexDirection: "row",
-    borderBottomColor: "#EEE",
-    borderBottomWidth: 1,
-  },
-  width50: {
-    width: "50%",
-  },
-  Left20: {
-    left: 20,
-    fontFamily: "Kanit",
-    color: "#396faf",
-  },
-  Right20: {
-    right: 20,
-    position: "absolute",
+  fontDS: {
     fontFamily: "Kanit",
   },
 });

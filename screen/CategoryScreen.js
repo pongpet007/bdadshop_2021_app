@@ -104,20 +104,26 @@ export default class CategoryScreen extends React.Component {
         >
           <ScrollView>
             <View style={{ flexDirection: "row" }}>
-              <View style={styles.width30}>
+              <TouchableOpacity
+                style={styles.width30}
+                onPress={() => this.props.navigation.navigate("SubCategory")}
+              >
                 <Image style={styles.ImgCategory} source={tools_1} />
                 <View style={styles.spacefontCategory}>
                   <Text style={styles.fontCategory}>
                     ก่อสร้างและวัสดุอุปกรณ์
                   </Text>
                 </View>
-              </View>
-              <View style={styles.width30}>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.width30}
+                onPress={() => this.props.navigation.navigate("SubCategory")}
+              >
                 <Image style={styles.ImgCategory} source={tools_2} />
                 <View style={styles.spacefontCategory}>
                   <Text style={styles.fontCategory}>เกษตรและวัสดุอุปกรณ์</Text>
                 </View>
-              </View>
+              </TouchableOpacity>
               <View style={styles.width30}>
                 <Image style={styles.ImgCategory} source={tools_1} />
                 <View style={styles.spacefontCategory}>
@@ -166,7 +172,7 @@ export default class CategoryScreen extends React.Component {
                 <Image style={styles.ImgCategory} source={tools_1} />
                 <View style={styles.spacefontCategory}>
                   <Text style={styles.fontCategory}>
-                    บรรจุภัณฑ์การจัดเก็บสินค้า
+                    บรรจุภัณฑ์การจัดเก็บสินค้าssssssss
                   </Text>
                 </View>
               </View>
@@ -210,8 +216,8 @@ const styles = StyleSheet.create({
     color: "#fcae16",
   },
   menu_footer: {
-    paddingLeft: "3%",
-    paddingRight: "3%",
+    paddingLeft: "5%",
+    paddingRight: "5%",
   },
   flexR50: {
     marginTop: 10,
