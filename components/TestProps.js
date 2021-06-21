@@ -14,19 +14,12 @@ import useAxios from "axios-hooks";
 import { Card } from "react-native-paper";
 import axios from "axios";
 
-function getAPI() {
+const getAPI = () => {
   axios
     .get("http://bdadshop.com/api/Home/indexnew")
     .then(function (response) {
       // handle success
-      // alert(JSON.stringify(response.data.bannervip));
-
-      const Banner = JSON.stringify(response.data.bannervip);
-      <View>
-        <Text style={{}}>
-          <Banner />
-        </Text>
-      </View>;
+      alert(JSON.stringify(response.data.bannervip));
     })
     .catch(function (error) {
       // handle error
@@ -36,7 +29,7 @@ function getAPI() {
       // always executed
       alert("Finally called");
     });
-}
+};
 
 export default function TestProps() {
   const [{ data, loading, error }, refetch] = useAxios(
@@ -66,7 +59,6 @@ export default function TestProps() {
         <TouchableOpacity onPress={getAPI}>
           <Text>getAPI</Text>
         </TouchableOpacity>
-        <getAPI />
       </ScrollView>
     </View>
   );

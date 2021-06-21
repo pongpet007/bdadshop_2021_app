@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import Carousel from "../components/Carousel";
+import Carousel2 from "../components/Carousel2";
+import CardItem from "../components/CardItem";
 import { dummyData } from "../data/Data";
+import { dummyData2 } from "../data/Data2";
+import { dummyData3 } from "../data/Data3";
 
 import {
   StyleSheet,
@@ -12,6 +16,8 @@ import {
   TextInput,
   Dimensions,
   ScrollView,
+  StatusBar,
+  ImageBackground,
 } from "react-native";
 
 import AppLoading from "expo-app-loading";
@@ -90,7 +96,7 @@ export default class HomeScreen extends React.Component {
           <Image style={styles.logo} source={logo} />
           <View></View>
           <TouchableOpacity
-            style={{ position: "absolute", top: 15, left: width * 0.05 }}
+            style={{ position: "absolute", top: 15, right: width * 0.05 }}
             onPress={() => this.props.navigation.navigate("Profile")}
           >
             <Image
@@ -106,22 +112,29 @@ export default class HomeScreen extends React.Component {
             <Image style={styles.searchIcon} source={search} />
             <TextInput
               style={styles.inputSearch}
-              placeholder="Search"
+              placeholder="ค้นหาสินค้าและบริการ"
               placeholderTextColor="#3333335e"
             />
           </View>
         </View>
         <View style={{ flex: 1, backgroundColor: "#FFF" }}>
           <ScrollView>
-            <View>
-              <Carousel data={dummyData} />
-            </View>
             <View style={styles.container}>
-              <View style={styles.spaceSlideHead}>
-                <Slider images={images} />
+              <View>
+                <ImageBackground
+                  source={require("../assets/images/bgBanner.jpg")}
+                  style={{
+                    flex: 1,
+                    resizeMode: "cover",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Carousel data={dummyData} />
+                </ImageBackground>
               </View>
-
-              <View style={styles.spaceMenu}>
+            </View>
+            <View style={styles.container2}>
+              <View style={{ flex: 1 }}>
                 <TouchableOpacity
                   style={styles.spaceMenu2}
                   onPress={() => this.props.navigation.navigate("Category")}
@@ -129,87 +142,107 @@ export default class HomeScreen extends React.Component {
                   <View style={styles.menuAlign}>
                     <Image
                       style={styles.menu_category}
-                      source={menu_category}
+                      source={require("../assets/images/100w/category.png")}
                     />
-                    <Text style={styles.menuText}>หมวดหมู่</Text>
                   </View>
                 </TouchableOpacity>
-
+                <Text style={styles.menuText}>หมวดหมู่</Text>
+              </View>
+              <View style={{ flex: 1 }}>
                 <TouchableOpacity
                   style={styles.spaceMenu2}
                   onPress={() => this.props.navigation.navigate("Brand")}
                 >
                   <View style={styles.menuAlign}>
-                    <Image style={styles.menu_category} source={bookmark} />
-                    <Text style={styles.menuText}>แบรนด์</Text>
+                    <Image
+                      style={styles.menu_category}
+                      source={require("../assets/images/100w/brand.png")}
+                    />
                   </View>
                 </TouchableOpacity>
-
+                <Text style={styles.menuText}>แบรนด์</Text>
+              </View>
+              <View style={{ flex: 1 }}>
                 <TouchableOpacity
                   style={styles.spaceMenu2}
                   onPress={() => this.props.navigation.navigate("Catalogue")}
                 >
                   <View style={styles.menuAlign}>
-                    <Image style={styles.menu_category} source={catalogue} />
-                    <Text style={styles.menuText}>Catelogue</Text>
+                    <Image
+                      style={styles.menu_category}
+                      source={require("../assets/images/100w/catalogue.png")}
+                    />
                   </View>
                 </TouchableOpacity>
-
+                <Text style={styles.menuText}>แคตตาล็อก</Text>
+              </View>
+              <View style={{ flex: 1 }}>
                 <TouchableOpacity
                   style={styles.spaceMenu2}
                   onPress={() => this.props.navigation.navigate("Discount")}
                 >
                   <View style={styles.menuAlign}>
-                    <Image style={styles.menu_category} source={discount} />
-                    <Text style={styles.menuText}>ราคาพิเศษ</Text>
+                    <Image
+                      style={styles.menu_category}
+                      source={require("../assets/images/100w/sale.png")}
+                    />
                   </View>
                 </TouchableOpacity>
-
+                <Text style={styles.menuText}>ราคาพิเศษ</Text>
+              </View>
+              <View style={{ flex: 1 }}>
                 <TouchableOpacity
                   style={styles.spaceMenu2}
                   onPress={() => this.props.navigation.navigate("Profile")}
                 >
                   <View style={styles.menuAlign}>
-                    <Image style={styles.menu_category} source={voucher} />
-                    <Text style={styles.menuText}>คูปอง</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-
-              <View style={styles.spaceSlideBanner}>
-                <Banner images={banner} />
-              </View>
-
-              <View style={styles.spaceAdvice}>
-                <Text style={styles.textAdvice}>สินค้าแนะนำ</Text>
-              </View>
-
-              <View style={styles.spaceItem}>
-                <TouchableOpacity
-                  style={styles.spaceItem}
-                  onPress={() => this.props.navigation.navigate("Profile")}
-                >
-                  <View style={styles.menuAlign}>
                     <Image
-                      style={styles.Item1}
-                      source={{
-                        uri: "https://images.pexels.com/photos/3926782/pexels-photo-3926782.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-                      }}
+                      style={styles.menu_category}
+                      source={require("../assets/images/100w/coupon.png")}
                     />
-                    <Text style={styles.menuText}>คูปอง</Text>
                   </View>
                 </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={styles.spaceItem}
-                  onPress={() => this.props.navigation.navigate("Profile")}
-                >
-                  <View style={styles.menuAlign}>
-                    <Image style={styles.Item2} source={voucher} />
-                    <Text style={styles.menuText}>คูปอง</Text>
-                  </View>
-                </TouchableOpacity>
+                <Text style={styles.menuText}>คูปอง</Text>
               </View>
+            </View>
+            <View>
+              <Carousel2 data={dummyData2} />
+            </View>
+            <View>
+              <Carousel2 data={dummyData3} />
+            </View>
+            <View
+              style={{
+                backgroundColor: "#ff8a26",
+                margin: 10,
+                paddingLeft: 10,
+                paddingRight: 10,
+                paddingBottom: 5,
+                paddingTop: 5,
+              }}
+            >
+              <Text
+                style={{ fontSize: 15, fontFamily: "KanitBold", color: "#fff" }}
+              >
+                สินค้าและบริการ
+              </Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                margin: 10,
+                flexWrap: "wrap",
+              }}
+            >
+              <CardItem />
+              <CardItem />
+              <CardItem />
+              <CardItem />
+              <CardItem />
+              <CardItem />
+              <CardItem />
+              <CardItem />
             </View>
           </ScrollView>
         </View>
@@ -219,6 +252,15 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container2: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 20,
+  },
+
   container: {
     top: 10,
     flex: 1,
@@ -268,9 +310,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   menu_category: {
-    width: width * 0.09,
-    height: width * 0.09,
-    // margin: "auto",
+    width: width * 0.12,
+    height: width * 0.12,
   },
   menu_footer_img: {
     width: 25,
@@ -280,7 +321,8 @@ const styles = StyleSheet.create({
   },
   menuText: {
     fontFamily: "Kanit",
-    fontSize: 11,
+    fontSize: width * 0.0305,
+    textAlign: "center",
   },
   footerText: {
     fontFamily: "Kanit",

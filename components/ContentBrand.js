@@ -13,7 +13,7 @@ import {
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 
-const BrandScreen = () => {
+const ContentBrand = () => {
   const [modalVisible, setModalFilter] = useState(false);
 
   const [modalVisibleList, setModalList] = useState(false);
@@ -356,4 +356,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BrandScreen;
+export default ContentBrand;
