@@ -92,8 +92,8 @@ export default class DiscountScreen extends React.Component {
             />
           </TouchableOpacity>
         </View>
-        {/* <ContentDiscount /> */}
-        <TestProps />
+        <ContentDiscount />
+        {/* <TestProps /> */}
       </View>
     );
   }

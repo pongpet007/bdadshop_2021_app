@@ -11,15 +11,18 @@ import {
 } from "react-native";
 import useAxios from "axios-hooks";
 
-import { Card } from "react-native-paper";
 import axios from "axios";
 
+import { useSelector } from "react-redux";
+
 const getAPI = () => {
+  // const [databanner, setDatabanner] = useState([]);
   axios
     .get("http://bdadshop.com/api/Home/indexnew")
     .then(function (response) {
       // handle success
       alert(JSON.stringify(response.data.bannervip));
+      // setDatabanner(response.data);
     })
     .catch(function (error) {
       // handle error
@@ -39,25 +42,27 @@ export default function TestProps() {
     }
   );
 
+  const calReducer = useSelector(({ calReducer }) => calReducer);
+
   if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error!</Text>;
 
   return (
     <View style={styles.container}>
-      {/* <Button
-        onPress={() =>
-          refetch({
-            data: {
-              // delay: 1,
-            },
-          })
-        }
-        title="Refetch"
-      />
-      <Text style={styles.paragraph}>{JSON.stringify(data)}</Text> */}
+      <Text
+        style={{
+          width: "100%",
+          height: 50,
+          backgroundColor: "red",
+          textAlign: "center",
+        }}
+      >
+        Item 2 :Count {calReducer.count}
+      </Text>
       <ScrollView style={{}}>
         <TouchableOpacity onPress={getAPI}>
-          <Text>getAPI</Text>
+          {/* {JSON.stringify(databanner)} */}
+          {/* <Text>getAPI</Text> */}
         </TouchableOpacity>
       </ScrollView>
     </View>
@@ -66,7 +71,6 @@ export default function TestProps() {
 
 const styles = StyleSheet.create({
   container: {
-    top: 10,
     alignItems: "center",
   },
 });

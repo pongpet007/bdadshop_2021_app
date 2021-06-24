@@ -1,0 +1,7 @@
+export const ACTION_ADD = "ACTION_ADD";
+export const ACTION_REM = "ACTION_REM";
+export const ACTION_CLR = "ACTION_CLR";
+export const ACTION_LOAD = "ACTION_LOAD";
+export const FETCHING_TODOS = "FETCHING_TODOS";
+export const FETCH_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";
+export const FETCH_TODOS_FAILURE = "FETCH_TODOS_FAILURE";
