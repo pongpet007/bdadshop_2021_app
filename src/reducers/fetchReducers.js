@@ -1,36 +1,36 @@
-import axios from "axios";
-
 import {
-  FETCH_TODOS_SUCCESS,
-  FETCH_TODOS_FAILURE,
-  FETCHING_TODOS,
-} from "../reducers/Constants";
+  FETCHING_DATA,
+  FETCHING_DATA_SUCCESS,
+  FETCHING_DATA_FAILURE,
+} from "./Constants";
 
 const initialState = {
-  count: 0,
-  todos: [],
   isFetching: false,
-  error: false,
+  data: [],
+  isError: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCHING_TODOS:
+    case FETCHING_DATA:
       return {
         ...state,
         isFetching: true,
+        data: [],
       };
-    case FETCH_TODOS_SUCCESS:
+    case FETCHING_DATA_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        todos: action.data,
+        error: null,
+        data: action.payload.data,
       };
-    case FETCH_TODOS_FAILURE:
+    case FETCHING_DATA_FAILURE:
       return {
         ...state,
         isFetching: false,
-        error: true,
+        isError: true,
+        error: action.payload.error,
       };
     default:
       return state;

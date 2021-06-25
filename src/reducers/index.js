@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import calReducer from "./cal.reducer";
-import loadReducer from "./load.reducer";
+import fetchReducers from "./fetchReducers";
 
 // import React from "react";
 // import { AppRegistry } from "react-native";
@@ -26,4 +26,4 @@ import loadReducer from "./load.reducer";
 
 // AppRegistry.registerComponent(appName, () => ReduxApp);
 
-export default combineReducers({ calReducer, loadReducer });
+export default combineReducers({ calReducer });

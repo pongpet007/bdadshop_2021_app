@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import React, { Component, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Button,
+} from "react-native";
 
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
@@ -7,7 +14,10 @@ import * as Font from "expo-font";
 import ContentDiscount from "../components/ContentDiscount";
 import TestProps from "../components/TestProps";
 
-export default class DiscountScreen extends React.Component {
+import { connect } from "react-redux";
+import { fetchData } from "../src/actions/cal.action";
+
+class DiscountScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -92,6 +102,7 @@ export default class DiscountScreen extends React.Component {
             />
           </TouchableOpacity>
         </View>
+
         <ContentDiscount />
         {/* <TestProps /> */}
       </View>
@@ -109,3 +120,15 @@ const styles = StyleSheet.create({
     fontFamily: "Kanit",
   },
 });
+
+//Used to add reducer's state into the props
+const mapStateToProps = (state) => ({
+  fetchReducer: state.fetchReducer,
+});
+
+// Used to add action (dispatch) into props
+const mapDispatchToProps = {
+  fetchData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DiscountScreen);
