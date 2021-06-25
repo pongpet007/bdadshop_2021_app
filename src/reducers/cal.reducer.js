@@ -19,21 +19,22 @@ const getdata = async () => {
   //   alert("Finally called");
   // });
 };
+
 const initialState = {
   count: 0,
-  x: getdata(),
+  x: [10, 20, 30],
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case ACTION_ADD:
-      return { ...state, count: state.count + 1 };
+      return { ...state, x: payload.data };
 
     case ACTION_REM:
-      return { ...state, count: state.count - 1 };
+      return { ...state, x: payload.data };
 
     case ACTION_CLR:
-      return { ...state, count: payload };
+      return { ...state, x: payload.data };
 
     default:
       return state;

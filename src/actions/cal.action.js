@@ -13,15 +13,23 @@ import axios from "axios";
 
 export const setStateToADD = () => ({
   type: ACTION_ADD,
+  payload: {
+    data: [40, 50, 60],
+  },
 });
 
 export const setStateToREM = () => ({
   type: ACTION_REM,
+  payload: {
+    data: [70, 80, 90],
+  },
 });
 
 export const setStateToCLR = (payload) => ({
   type: ACTION_CLR,
-  payload,
+  payload: {
+    data: ["Zero data"],
+  },
 });
 
 export const setStateToLoad = () => ({
@@ -29,20 +37,15 @@ export const setStateToLoad = () => ({
 });
 
 export const add = () => {
-  // do something
   return (dispatch) => {
-    setTimeout(() => {
-      dispatch(setStateToADD());
-    }, 1000);
+    dispatch(setStateToADD());
   };
 };
 
 export const remove = () => {
   // do something
   return (dispatch) => {
-    setTimeout(() => {
-      dispatch(setStateToREM());
-    }, 1000);
+    dispatch(setStateToREM());
   };
 };
 

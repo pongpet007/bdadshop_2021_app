@@ -70,7 +70,7 @@ const ContentDiscount = (props) => {
         })} */}
       </Text>
       {/* <Text>x = {calReducer.x[0]}</Text> */}
-      <Text>x = {calReducer.x[0]}</Text>
+      <Text>x = {calReducer.x}</Text>
       <Text> </Text>
       <View style={{ flexDirection: "row" }}>
         <Button title="ADD" onPress={() => dispatch(calAction.add())} />
